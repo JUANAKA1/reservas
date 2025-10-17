@@ -17,5 +17,4 @@ export type ReservationDoc = {
 export const reservationModel = model<ReservationDoc>(
   'Reservation',
   reservationSchema
-  
 );
