@@ -14,7 +14,7 @@ export type ReservationDoc = {
   createdAt: Date;
   updatedAt: Date;
 };
-export const reservationModel = model<ReservationDoc>(
+export const ReservationModel = model<ReservationDoc>(
   'Reservation',
   reservationSchema
 );

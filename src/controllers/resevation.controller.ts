@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { reservationModel } from '../models/reservation.model';
+import { ReservationModel } from '../models/reservation.model';
 
 const NOT_FOUND_MESSAGE = 'Reservación no encontrada! 🤔';
 
@@ -11,7 +11,7 @@ export async function createReservation(
   next: NextFunction
 ) {
   try {
-    const reservation = await reservationModel.create(req.body);
+    const reservation = await ReservationModel.create(req.body);
     res.status(201).json(reservation);
   } catch (error) {
     next(error);
@@ -25,7 +25,7 @@ export async function getReservations(
   next: NextFunction
 ) {
   try {
-    const reservations = await reservationModel
+    const reservations = await ReservationModel
       .find()
       .sort({ createdAt: -1 })
       .lean();
@@ -48,7 +48,7 @@ export async function getReservationsById(
       return res.status(404).json({ message: NOT_FOUND_MESSAGE });
     }
 
-    const reservation = await reservationModel.findById(id).lean();
+    const reservation = await ReservationModel.findById(id).lean();
     if (!reservation) {
       return res.status(404).json({ message: NOT_FOUND_MESSAGE });
     }
@@ -73,7 +73,7 @@ export async function updateReservation(
       return res.status(404).json({ message: NOT_FOUND_MESSAGE });
     }
 
-    const reservationUpdate = await reservationModel
+    const reservationUpdate = await ReservationModel
       .findByIdAndUpdate(id, body, { new: true })
       .lean();
 
@@ -100,7 +100,7 @@ export async function deleteReservation(
       return res.status(404).json({ message: NOT_FOUND_MESSAGE });
     }
 
-    const reservationDelete = await reservationModel
+    const reservationDelete = await ReservationModel
       .findByIdAndDelete(id)
       .lean();
     if (!reservationDelete) {
