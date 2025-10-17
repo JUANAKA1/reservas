@@ -10,7 +10,7 @@ export function errorHandler(
   const message = err.message ?? 'Internal Server Error 😑';
 
   if (process.env.NODE_ENV !== 'production') {
-    console.error(`[🙉☠️Error] ${err}`);
+    console.error(`[☠️ Error] ${err}`);
   }
   res.status(status).json({ error: message });
 }

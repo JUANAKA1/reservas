@@ -17,7 +17,6 @@ export function authGuard(req: AuthRequest, res: Response, next: NextFunction) {
     });
 
   const token = header.slice(7);
-  console.log(token);
   try {
     const payload = jwt.verify(token, ENV.JWT_SECRET) as UserJWTPayload;
     req.user = payload;
